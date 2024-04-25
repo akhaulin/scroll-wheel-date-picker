@@ -133,7 +133,12 @@ class ScrollWheelDatePicker extends StatelessWidget {
           child: ShaderMask(
             shaderCallback: (bounds) {
               return const LinearGradient(
-                colors: [Colors.black, Colors.transparent, Colors.transparent, Colors.black],
+                colors: [
+                  Colors.black,
+                  Colors.transparent,
+                  Colors.transparent,
+                  Colors.black
+                ],
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
                 stops: [0.0, 0.08, 0.92, 1.0],
@@ -143,6 +148,18 @@ class ScrollWheelDatePicker extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
+                // Months
+                Expanded(
+                  child: _scrollWidget(
+                    controller: _dateController.monthController,
+                    controllerItemChanged: (value) {
+                      _dateController.changeMonth(month: value);
+                      onSelectedItemChanged?.call(_dateController.dateTime);
+                    },
+                    looping: loopMonths,
+                  ),
+                ),
+
                 // Days
                 Expanded(
                   child: ListenableBuilder(
@@ -155,18 +172,6 @@ class ScrollWheelDatePicker extends StatelessWidget {
                       },
                       looping: loopDays,
                     ),
-                  ),
-                ),
-
-                // Months
-                Expanded(
-                  child: _scrollWidget(
-                    controller: _dateController.monthController,
-                    controllerItemChanged: (value) {
-                      _dateController.changeMonth(month: value);
-                      onSelectedItemChanged?.call(_dateController.dateTime);
-                    },
-                    looping: loopMonths,
                   ),
                 ),
 
@@ -194,8 +199,12 @@ class ScrollWheelDatePicker extends StatelessWidget {
                       Expanded(
                         child: Container(
                           decoration: BoxDecoration(
-                            color: (theme as FlatDatePickerTheme).backgroundColor.withOpacity(
-                                  1.0 - theme.overAndUnderCenterOpacity.clamp(0.0, 1.0),
+                            color: (theme as FlatDatePickerTheme)
+                                .backgroundColor
+                                .withOpacity(
+                                  1.0 -
+                                      theme.overAndUnderCenterOpacity
+                                          .clamp(0.0, 1.0),
                                 ),
                           ),
                         ),
@@ -204,8 +213,12 @@ class ScrollWheelDatePicker extends StatelessWidget {
                       Expanded(
                         child: Container(
                           decoration: BoxDecoration(
-                            color: (theme as FlatDatePickerTheme).backgroundColor.withOpacity(
-                                  1.0 - theme.overAndUnderCenterOpacity.clamp(0.0, 1.0),
+                            color: (theme as FlatDatePickerTheme)
+                                .backgroundColor
+                                .withOpacity(
+                                  1.0 -
+                                      theme.overAndUnderCenterOpacity
+                                          .clamp(0.0, 1.0),
                                 ),
                           ),
                         ),
