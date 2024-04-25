@@ -209,7 +209,7 @@ class ScrollWheelDatePicker extends StatelessWidget {
                           ),
                         ),
                       ),
-                      const SizedBox(height: 0), //Temporary
+                      const SizedBox(height: 30), //Temporary
                       Expanded(
                         child: Container(
                           decoration: BoxDecoration(
